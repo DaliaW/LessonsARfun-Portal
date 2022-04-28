@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import PolySearch from '../PolySearch/PolySearch';
-import PolyPreview from '../PolyPreview/PolyPreview';
-import Closebttn from '../Buttons/Closebttn'
-import './PolyDashboard.css';
+import PolySearch from "../PolySearch/PolySearch";
+import PolyPreview from "../PolyPreview/PolyPreview";
+import "./PolyDashboard.css";
 
 class PolyDashboard extends Component {
   constructor() {
@@ -11,16 +10,16 @@ class PolyDashboard extends Component {
 
     this.state = {
       polyAsset: null,
-    }
+    };
   }
 
   selectPolyAsset = (polyAsset) => {
-    this.setState({polyAsset});
-  }
+    this.setState({ polyAsset });
+  };
 
   clearPolyAsset = () => {
-    this.setState({polyAsset: null});
-  }
+    this.setState({ polyAsset: null });
+  };
 
   render() {
     const { polyAsset } = this.state;
@@ -28,20 +27,10 @@ class PolyDashboard extends Component {
     return (
       <div className="PolyDashboard__container">
         <div className="PolyDashboard__search">
-        {/* <div>
-        <Closebttn/>
-        </div> */}
-          <PolySearch
-            selectPolyAsset={this.selectPolyAsset} />
-          {/* {polyAsset ? (
-            <PolyDetails
-              polyAsset={polyAsset}
-              clearPolyAsset={this.clearPolyAsset} />
-          ) : null} */}
+          <PolySearch selectPolyAsset={this.selectPolyAsset} />
         </div>
         <div className="PolyDashboard__preview">
-          <PolyPreview
-            polyAsset={polyAsset} />
+          <PolyPreview polyAsset={polyAsset} />
         </div>
       </div>
     );

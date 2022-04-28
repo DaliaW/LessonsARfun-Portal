@@ -1,46 +1,46 @@
-import React from 'react';
-import Avatar from '@material-ui/core/Avatar';
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Link from '@material-ui/core/Link';
-import Grid from '@material-ui/core/Grid';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
+import React from "react";
+import Avatar from "@material-ui/core/Avatar";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
+import Link from "@material-ui/core/Link";
+import Grid from "@material-ui/core/Grid";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import Typography from "@material-ui/core/Typography";
+import { makeStyles } from "@material-ui/core/styles";
+import Container from "@material-ui/core/Container";
 import { useState } from "react";
 import { useToasts } from "react-toast-notifications";
 import axios from "axios";
 import { link } from "../helpers/constants";
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(12),
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: theme.palette.secondary.main,
-    boxShadow: '0px 0px 15px 0px #2672cf'
+    boxShadow: "0px 0px 15px 0px #2672cf",
   },
   form: {
-    width: '100%',
+    width: "100%",
     marginTop: theme.spacing(3),
   },
-  select:{
-    width: '100%',
+  select: {
+    width: "100%",
     marginTop: theme.spacing(3),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
-    boxShadow: '0px 0px 15px 0px #2672cf'
+    boxShadow: "0px 0px 15px 0px #2672cf",
   },
   formControl: {
     margin: theme.spacing(1),
@@ -54,12 +54,12 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
 
-    // defining the variables and states
-    const [username, setUsername] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [role, setRole] = React.useState('');
-    const { addToast } = useToasts();
+  // defining the variables and states
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = React.useState("");
+  const { addToast } = useToasts();
 
   const routeChange = (path) => {
     document.location.href = window.location.origin + `/${path}`;
@@ -72,7 +72,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const user = { username, email, password , role};
+    const user = { username, email, password, role };
 
     if (username === "" || password === "" || email === "" || role === "") {
       addToast("Please enter all the required fields", {
@@ -89,8 +89,7 @@ export default function SignUp() {
             autoDismiss: true,
           });
           console.log(response.data.error);
-        } 
-        else {
+        } else {
           document.location.href = window.location.origin + "/login";
         }
       } catch (error) {
@@ -155,20 +154,22 @@ export default function SignUp() {
               />
             </Grid>
             <Grid item xs={12}>
-            <FormControl className={classes.formControl}>
-        <InputLabel id="demo-simple-select-required-label">Role</InputLabel>
-        <Select 
-          labelId="demo-simple-select-required-label"
-          id="demo-simple-select-required"
-          value={role}
-          onChange={handleChange}
-          className={classes.selectEmpty}
-        >
-          <MenuItem value={"teacher"}>Teacher</MenuItem>
-          <MenuItem value={"student"}>Student</MenuItem>
-        </Select>
-        <FormHelperText>Required</FormHelperText>
-        </FormControl>
+              <FormControl className={classes.formControl}>
+                <InputLabel id="demo-simple-select-required-label">
+                  Role
+                </InputLabel>
+                <Select
+                  labelId="demo-simple-select-required-label"
+                  id="demo-simple-select-required"
+                  value={role}
+                  onChange={handleChange}
+                  className={classes.selectEmpty}
+                >
+                  <MenuItem value={"teacher"}>Teacher</MenuItem>
+                  <MenuItem value={"student"}>Student</MenuItem>
+                </Select>
+                <FormHelperText>Required</FormHelperText>
+              </FormControl>
             </Grid>
           </Grid>
           <Button
@@ -182,8 +183,11 @@ export default function SignUp() {
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
-              <Link onClick={() => routeChange("login")}
-                href="#" variant="body2" >
+              <Link
+                onClick={() => routeChange("login")}
+                href="#"
+                variant="body2"
+              >
                 Already have an account? Sign in
               </Link>
             </Grid>

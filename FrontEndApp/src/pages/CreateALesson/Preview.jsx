@@ -3,26 +3,25 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { TransformControls } from "three/examples/jsm/controls/TransformControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
-import Grid from '@material-ui/core/Grid';
-import TogetherJS from "../../components/Together"
-import Nextbttn from '../../components/Buttons/Nextbttn';
-import Prevbttn from '../../components/Buttons/Prevbttn';
-import Swal from 'sweetalert2';
-import Closebttn from '../../components/Buttons/Closebttn'
-import TextSprite from '@seregpie/three.text-sprite';
+import Grid from "@material-ui/core/Grid";
+import TogetherJS from "../../components/Together";
+import Nextbttn from "../../components/Buttons/Nextbttn";
+import Prevbttn from "../../components/Buttons/Prevbttn";
+import Swal from "sweetalert2";
+import Closebttn from "../../components/Buttons/Closebttn";
+import TextSprite from "@seregpie/three.text-sprite";
 
 export default class Preview extends Component {
   constructor(props) {
     super(props);
-    this.state={
-      allModels: []
+    this.state = {
+      allModels: [],
     };
   }
   componentDidMount() {
     // ===> get selected assets <===
     const allModels = JSON.parse(localStorage.getItem("allEntries"));
     console.log(allModels);
-    //console.log(allModels[0].displayName.substring(0,3));
 
     const allImages = JSON.parse(localStorage.getItem("allImages"));
     console.log(allImages);
@@ -46,7 +45,6 @@ export default class Preview extends Component {
     let x, y, z;
     let rotateX, rotateY, rotateZ;
     let scaleX, scaleY, scaleZ;
-    // const name = "";
 
     init();
     render();
@@ -68,19 +66,17 @@ export default class Preview extends Component {
       currentCamera.lookAt(0, 20, 0);
 
       scene = new THREE.Scene();
-      scene.background = new THREE.Color( 0xECEFF4 );
+      scene.background = new THREE.Color(0xeceff4);
 
-      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.25, 20);
+      camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.25,
+        20
+      );
       camera.position.set(-1.8, 0.9, 2.7);
 
       //===================================== initial environment (card & background) ===============================================
-    //   const planeGeometry = new THREE.PlaneGeometry(100, 50);
-    //   planeGeometry.rotateX(-Math.PI / 2);
-    //   const planeMaterial = new THREE.ShadowMaterial();
-    //   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
-    //  // plane.position.y = -200;
-    //   plane.receiveShadow = true;
-    //   scene.add(plane);
 
       const helper = new THREE.GridHelper(100, 400);
       helper.position.y = -0.2;
@@ -89,12 +85,12 @@ export default class Preview extends Component {
       scene.add(helper);
 
       //========> GLTF Loader (for the selected gltf models) <==========
-      if(allModels){
+      if (allModels) {
         const loader = new GLTFLoader();
-        
-        for(let i = 0 ; i < allModels.length ; i++){
+
+        for (let i = 0; i < allModels.length; i++) {
           loader.load(
-            allModels[i].assetUrl+"",
+            allModels[i].assetUrl + "",
             // eslint-disable-next-line no-loop-func
             function (gltf) {
               // resize
@@ -102,38 +98,40 @@ export default class Preview extends Component {
               bbox = new THREE.Box3().setFromObject(mroot);
               cent = bbox.getCenter(new THREE.Vector3());
               size = bbox.getSize(new THREE.Vector3());
-    
+
               //Rescale the object to normalized space
               maxAxis = Math.max(size.x, size.y, size.z);
               mroot.scale.multiplyScalar(1 / maxAxis);
               bbox.setFromObject(mroot);
               bbox.getCenter(cent);
               bbox.getSize(size);
-              //Reposition to 0,halfY,0
-              //mroot.position.copy(cent).multiplyScalar(+1);
-              //mroot.position.z += size.y * 0.8;
-             // mroot.position.set(++i, 0 ,i);
+
               model = mroot;
-              model.position.z +=1;
+              model.position.z += 1;
               model.position.x = i;
-              console.log(bbox.getSize(size))
+              console.log(bbox.getSize(size));
               //-----------------------------------------------
               model.castShadow = true;
               model.receiveShadow = true;
               scene.add(model);
-              meshes.push(model)
-              console.log(meshes[0]._gizmo)
-              //control.attach(model);
+              meshes.push(model);
+              console.log(meshes[0]._gizmo);
 
-              console.log(model)
+              console.log(model);
               allModels[i].transform = {
-                scaleX: model.scale.x, scaleY: model.scale.y, scaleZ: model.scale.z,
-                rotateX: model.rotation.x, rotateY: model.rotation.y, rotateZ: model.rotation.z,
-                x: model.position.x, y: model.position.y, z: model.position.z
-              }
+                scaleX: model.scale.x,
+                scaleY: model.scale.y,
+                scaleZ: model.scale.z,
+                rotateX: model.rotation.x,
+                rotateY: model.rotation.y,
+                rotateZ: model.rotation.z,
+                x: model.position.x,
+                y: model.position.y,
+                z: model.position.z,
+              };
 
               console.log(allModels);
-              localStorage.setItem('Models', JSON.stringify(allModels));
+              localStorage.setItem("Models", JSON.stringify(allModels));
               console.log("all", JSON.parse(localStorage.getItem("Models")));
             },
             undefined,
@@ -142,7 +140,6 @@ export default class Preview extends Component {
             }
           );
         }
-  
       }
 
       renderer = new THREE.WebGLRenderer({ antialias: true });
@@ -169,16 +166,17 @@ export default class Preview extends Component {
       // instantiate a loader
       const TexLoader = new THREE.TextureLoader();
 
-      if(allImages){
-        for(let i = 0; i < allImages.length; i++){
+      if (allImages) {
+        for (let i = 0; i < allImages.length; i++) {
           const card = new THREE.BoxGeometry(1, 0.552, 0);
-          TexLoader.load(allImages[i].picture+"", 
+          TexLoader.load(
+            allImages[i].picture + "",
             // eslint-disable-next-line no-loop-func
-            function (pic){
+            function (pic) {
               const Pic = new THREE.MeshLambertMaterial({ map: pic });
               const Picture = new THREE.Mesh(card, Pic);
-              console.log(Picture)
-              Picture.position.set(i, 0 ,0);
+              console.log(Picture);
+              Picture.position.set(i, 0, 0);
               scene.add(Picture);
             },
             undefined,
@@ -186,10 +184,8 @@ export default class Preview extends Component {
               console.error(error);
             }
           );
-
         }
       }
-
 
       orbit = new OrbitControls(currentCamera, renderer.domElement);
       orbit.update();
@@ -204,42 +200,41 @@ export default class Preview extends Component {
       });
 
       //===================================== objects with their textures ===============================================
-      control.addEventListener('mouseUp', onMouseDown);
+      control.addEventListener("mouseUp", onMouseDown);
       function onMouseDown(e) {
         controledObject = control.object;
         control.attach(controledObject);
         console.log("clicked", controledObject);
         a = true;
         console.log(a);
-
-    }
+      }
 
       controledObject = control.object;
 
-      for(var i=0; i<meshes.length; i++) {
+      for (var i = 0; i < meshes.length; i++) {
         console.log(meshes[i]);
       }
 
       console.log(controledObject);
 
-      window.addEventListener('click', onClick, false);
+      window.addEventListener("click", onClick, false);
 
       //==================================== Text ============================================================
-      if(allTxt){
-      for(let i=0; i<allTxt.length; i++){
-        let instance = new TextSprite({
-          alignment: 'left',
-          color: '#000000',
-          fontFamily: '"Times New Roman", Times, serif',
-          fontSize: 0.1,
-          fontStyle: 'italic',
-          text: allTxt[i].Txt ,
-          padding: 10,
-        });
-        instance.position.y = 0.5;
-        scene.add(instance);
+      if (allTxt) {
+        for (let i = 0; i < allTxt.length; i++) {
+          let instance = new TextSprite({
+            alignment: "left",
+            color: "#000000",
+            fontFamily: '"Times New Roman", Times, serif',
+            fontSize: 0.1,
+            fontStyle: "italic",
+            text: allTxt[i].Txt,
+            padding: 10,
+          });
+          instance.position.y = 0.5;
+          scene.add(instance);
+        }
       }
-    }
       //------------------------------------------------------------------------------------------------------
 
       window.addEventListener("resize", onWindowResize);
@@ -325,7 +320,8 @@ export default class Preview extends Component {
           case 32: // Spacebar
             control.enabled = !control.enabled;
             break;
-          default: break;
+          default:
+            break;
         }
       });
 
@@ -336,100 +332,91 @@ export default class Preview extends Component {
             control.setRotationSnap(null);
             control.setScaleSnap(null);
             break;
-          default: break;
+          default:
+            break;
         }
       });
-      //renderer.domElement.addEventListener('click', e => onClick(e));
-
     }
 
-   function onClick(event) {
+    function onClick(event) {
+      mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-    mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-    mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, currentCamera);
 
+      // calculate objects intersecting the picking ray
+      var intersects = raycaster.intersectObjects(scene.children, true);
 
-    raycaster.setFromCamera(mouse, currentCamera);
-
-    // calculate objects intersecting the picking ray
-    var intersects = raycaster.intersectObjects(scene.children, true);
-
-    for (var i = 0; i < intersects.length; i++) {
-
+      for (var i = 0; i < intersects.length; i++) {
         if (intersects[i].object.type === "Mesh") {
-            if (a) {
-                control.attach(controledObject);
-                console.log(controledObject.position)
+          if (a) {
+            control.attach(controledObject);
+            console.log(controledObject.position);
 
-                console.log(controledObject.material.name)       //  <======= our key to the transitions 
-                a = false;
-                scaleX = controledObject.scale.x;
-                scaleY = controledObject.scale.y
-                scaleZ = controledObject.scale.z
-                rotateX = controledObject.rotation.x
-                rotateY = controledObject.rotation.y
-                rotateZ = controledObject.rotation.z
-                x = controledObject.position.x
-                y = controledObject.position.y 
-                z = controledObject.position.z
+            console.log(controledObject.material.name); //  <======= our key to the transitions
+            a = false;
+            scaleX = controledObject.scale.x;
+            scaleY = controledObject.scale.y;
+            scaleZ = controledObject.scale.z;
+            rotateX = controledObject.rotation.x;
+            rotateY = controledObject.rotation.y;
+            rotateZ = controledObject.rotation.z;
+            x = controledObject.position.x;
+            y = controledObject.position.y;
+            z = controledObject.position.z;
 
-                for(let i = 0; i < allModels.length; i++) {
-                  let requiredName = allModels[i].displayName.substring(0,3); 
-                  if(controledObject.material.name.includes(requiredName)){
-                    console.log("yes")
-                    if(scaleX <= 1 || scaleY <= 1 || scaleZ <= 1){
-                      console.log("no")
-                      allModels[i].transform.rotateX = rotateX;
-                      allModels[i].transform.rotateY = rotateY;
-                      allModels[i].transform.rotateZ = rotateZ;
-                      allModels[i].transform.x = x;
-                      allModels[i].transform.y = y;
-                      allModels[i].transform.z = z;
-                    } else {
-                      console.log("heree")
-                      allModels[i].transform.scaleX = scaleX;
-                      allModels[i].transform.scaleY = scaleY;
-                      allModels[i].transform.scaleZ = scaleZ;
+            for (let i = 0; i < allModels.length; i++) {
+              let requiredName = allModels[i].displayName.substring(0, 3);
+              if (controledObject.material.name.includes(requiredName)) {
+                console.log("yes");
+                if (scaleX <= 1 || scaleY <= 1 || scaleZ <= 1) {
+                  console.log("no");
+                  allModels[i].transform.rotateX = rotateX;
+                  allModels[i].transform.rotateY = rotateY;
+                  allModels[i].transform.rotateZ = rotateZ;
+                  allModels[i].transform.x = x;
+                  allModels[i].transform.y = y;
+                  allModels[i].transform.z = z;
+                } else {
+                  console.log("heree");
+                  allModels[i].transform.scaleX = scaleX;
+                  allModels[i].transform.scaleY = scaleY;
+                  allModels[i].transform.scaleZ = scaleZ;
 
-                      allModels[i].transform.rotateX = rotateX;
-                      allModels[i].transform.rotateY = rotateY;
-                      allModels[i].transform.rotateZ = rotateZ;
+                  allModels[i].transform.rotateX = rotateX;
+                  allModels[i].transform.rotateY = rotateY;
+                  allModels[i].transform.rotateZ = rotateZ;
 
-                      allModels[i].transform.x = x;
-                      allModels[i].transform.y = y;
-                      allModels[i].transform.z = z;
-                      // allModels[i].transform = {
-                      //   scaleX: scaleX, scaleY: scaleY, scaleZ: scaleZ,
-                      //   rotateX: rotateX, rotateY: rotateY, rotateZ: rotateZ,
-                      //   x: x, y: y, z: z
-                      // }
-                    }
-
-                  }
+                  allModels[i].transform.x = x;
+                  allModels[i].transform.y = y;
+                  allModels[i].transform.z = z;
                 }
-
-            } else {
-                control.attach(intersects[i].object);
-                console.log("inside", intersects[i].object);
+              }
             }
-
+          } else {
+            control.attach(intersects[i].object);
+            console.log("inside", intersects[i].object);
+          }
         }
+      }
+      render();
 
+      console.log(allModels);
+      localStorage.setItem("Models", JSON.stringify(allModels));
+      console.log("all", JSON.parse(localStorage.getItem("Models")));
     }
-    render();
-
-    console.log(allModels);
-    localStorage.setItem('Models', JSON.stringify(allModels));
-    console.log("all", JSON.parse(localStorage.getItem("Models")));
-
-}
 
     function onWindowResize() {
       const aspect = window.innerWidth / window.innerHeight;
-//-------------------------------------------------------------
-      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.25, 20);
+      //-------------------------------------------------------------
+      camera = new THREE.PerspectiveCamera(
+        45,
+        window.innerWidth / window.innerHeight,
+        0.25,
+        20
+      );
       camera.position.set(-1.8, 0.9, 2.7);
-//-------------------------------------------------------------
+      //-------------------------------------------------------------
       cameraPersp.aspect = aspect;
       cameraPersp.updateProjectionMatrix();
 
@@ -448,76 +435,73 @@ export default class Preview extends Component {
     // === THREE.JS EXAMPLE CODE END ===
 
     const swalWithBootstrapButtons = Swal.mixin({
-      buttonsStyling: true
-    })
-    
-    swalWithBootstrapButtons.fire({
-      title: 'You made it!! 😄🎉',
-      html: 'This is the lesson preview page where you can view your selected assets and <b> Transition, Scale and Rotate them.</b> How cool is that?!!<br/> Now show us your imagination and the cool things you could do!',
-      icon: 'info',
-      confirmButtonText:
-      '<i className="fa fa-thumbs-up"></i> Great! Whats next?',
-      confirmButtonAriaLabel: 'Thumbs up, great!',
-    }).then((result) => {
-      if(result.isConfirmed) {
-        swalWithBootstrapButtons.fire({
-          title: 'Instructions',
-          html: '<h4>Use "W" to translate <br/> "E" rotate <br/> "R" scale <br/> "+/-" adjust size "Q" toggle world/local space <br/> "Shift" snap to grid "X" toggle X <br/> "Y" toggle Y <br/> "Z" toggle Z <br/> "Spacebar" toggle enabled "C" toggle camera <br/> "V" random zoom. <br/> <b>After that click on "Next" to go to publish your lesson</b></h4>',
-          icon: 'question'
-        })
-      }
-    })
+      buttonsStyling: true,
+    });
 
-    // this.setState({allModels: newModels})
-    // console.log(this.state)
-        
+    swalWithBootstrapButtons
+      .fire({
+        title: "You made it!! 😄🎉",
+        html: "This is the lesson preview page where you can view your selected assets and <b> Transition, Scale and Rotate them.</b> How cool is that?!!<br/> Now show us your imagination and the cool things you could do!",
+        icon: "info",
+        confirmButtonText:
+          '<i className="fa fa-thumbs-up"></i> Great! Whats next?',
+        confirmButtonAriaLabel: "Thumbs up, great!",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          swalWithBootstrapButtons.fire({
+            title: "Instructions",
+            html: '<h4>Use "W" to translate <br/> "E" rotate <br/> "R" scale <br/> "+/-" adjust size "Q" toggle world/local space <br/> "Shift" snap to grid "X" toggle X <br/> "Y" toggle Y <br/> "Z" toggle Z <br/> "Spacebar" toggle enabled "C" toggle camera <br/> "V" random zoom. <br/> <b>After that click on "Next" to go to publish your lesson</b></h4>',
+            icon: "question",
+          });
+        }
+      });
   }
   routeChange = (path) => {
     document.location.href = window.location.origin + `/${path}`;
   };
 
   handleClick = () => {
-    console.log('handleClick');
+    console.log("handleClick");
     const swalWithBootstrapButtons = Swal.mixin({
-      buttonsStyling: true
-    })
+      buttonsStyling: true,
+    });
     swalWithBootstrapButtons.fire({
-      title: 'Instructions',
+      title: "Instructions",
       html: '<h4>Use "W" to translate <br/> "E" rotate <br/> "R" scale <br/> "+/-" adjust size "Q" toggle world/local space <br/> "Shift" snap to grid "X" toggle X <br/> "Y" toggle Y <br/> "Z" toggle Z <br/> "Spacebar" toggle enabled "C" toggle camera <br/> "V" random zoom. <br/> <b>After that click on "Next" to go to publish your lesson</b></h4>',
-      icon: 'question'
-    })
-  }
+      icon: "question",
+    });
+  };
 
   handleNext = () => {
-    this.routeChange("CreateLesson/publish")    
-  }
+    this.routeChange("CreateLesson/publish");
+  };
 
   render() {
-    return(
+    return (
       <div>
         <div ref={(ref) => (this.mount = ref)} />
         <TogetherJS />
-          <div id="container"></div>
-          <div 
-              style={{
-                marginTop: "50px",
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center'
-              }}
-          >
-            <Grid item xs={12}>
-              <Prevbttn onClick={() => this.routeChange("CreateLesson/assets")}/>
-              <Nextbttn onClick={() => this.handleNext()}/>
-
-            </Grid>
-            <div style={{float: 'left'}}>
-                <h1 >Lesson preview</h1>
-              </div>
-              <div style={{float: 'left'}}>
-                <Closebttn />
-              </div>
+        <div id="container"></div>
+        <div
+          style={{
+            marginTop: "50px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <Grid item xs={12}>
+            <Prevbttn onClick={() => this.routeChange("CreateLesson/assets")} />
+            <Nextbttn onClick={() => this.handleNext()} />
+          </Grid>
+          <div style={{ float: "left" }}>
+            <h1>Lesson preview</h1>
           </div>
+          <div style={{ float: "left" }}>
+            <Closebttn />
+          </div>
+        </div>
       </div>
     );
   }

@@ -1,14 +1,14 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Button from '@material-ui/core/Button';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import Button from "@material-ui/core/Button";
+import AccessibilityNewIcon from "@material-ui/icons/AccessibilityNew";
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-          margin: theme.spacing(1),
-        },
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
     },
+  },
 }));
 
 export default function Polybttn(props) {
@@ -16,13 +16,13 @@ export default function Polybttn(props) {
 
   return (
     <Button
-    className={classes.button}
-    startIcon={<AccessibilityNewIcon />}
-    variant="outlined"
-    color="primary"
-    onClick={props.onClick}
+      className={classes.button}
+      startIcon={<AccessibilityNewIcon />}
+      variant="outlined"
+      color="primary"
+      onClick={props.onClick}
     >
-        3D Models
+      3D Models
     </Button>
   );
 }

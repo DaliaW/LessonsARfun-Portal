@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "react-bootstrap/Navbar";
 import checkLogin from "../helpers/checkLogin";
-import ReactTooltip from 'react-tooltip';
+import ReactTooltip from "react-tooltip";
 
 //assets
- import profileIcon from "../assets/logo.svg";
- import logout from "../assets/logout.svg";
+import profileIcon from "../assets/logo.svg";
+import logout from "../assets/logout.svg";
 
 function NavBar(props) {
   const [name, setName] = useState("");
@@ -34,10 +34,8 @@ function NavBar(props) {
             alt=""
             src={profileIcon}
             className="profile-icon"
-            // onClick={() => (document.location.href = "/profile")}
           />{" "}
-          <a
-            className="navbar-name" href="/home">
+          <a className="navbar-name" href="/home">
             Hi {name}
           </a>
         </Navbar.Brand>

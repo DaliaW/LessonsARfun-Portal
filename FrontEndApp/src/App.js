@@ -10,14 +10,14 @@ import NavBar from "./components/Navbar";
 import { ToastProvider } from "react-toast-notifications";
 
 // Pages
-import Homepage from "./pages/Homepage"
+import Homepage from "./pages/Homepage";
 import Assets from "./pages/CreateALesson/Assets";
 import MyClasses from "./pages/MyClasses";
 import MyLessons from "./pages/MyLessons";
 import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-import Lessons from "./pages/Lessons.jsx"
+import Lessons from "./pages/Lessons.jsx";
 import Preview from "./pages/CreateALesson/Preview";
 import Publish from "./pages/CreateALesson/Publish";
 
@@ -26,12 +26,20 @@ var currentLocation = window.location.pathname;
 function App() {
   return (
     <div>
-      {currentLocation === '/login' || currentLocation === '/unauthorized' || currentLocation === '/signup'? null : <NavBar />}
-      {currentLocation === '/login' || currentLocation === '/unauthorized' || currentLocation === '/signup'? null : <Sidebar />}
+      {currentLocation === "/login" ||
+      currentLocation === "/unauthorized" ||
+      currentLocation === "/signup" ? null : (
+        <NavBar />
+      )}
+      {currentLocation === "/login" ||
+      currentLocation === "/unauthorized" ||
+      currentLocation === "/signup" ? null : (
+        <Sidebar />
+      )}
       <Router>
         <Switch>
           <ToastProvider>
-            {currentLocation === "/login" || currentLocation === "/signup"  ? (
+            {currentLocation === "/login" || currentLocation === "/signup" ? (
               <div>
                 <Switch>
                   <Route

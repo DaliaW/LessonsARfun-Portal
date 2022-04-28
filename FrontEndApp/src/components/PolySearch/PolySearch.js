@@ -1,88 +1,29 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 
-import TextField from '@material-ui/core/TextField';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from "@material-ui/core/TextField";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-import PolyResult from '../PolyResult/PolyResult';
+import PolyResult from "../PolyResult/PolyResult";
 
-import './PolySearch.css';
+import "./PolySearch.css";
 
 class PolySearch extends Component {
   state = {
-    apiKey: 'AIzaSyDQlb14iN5L8CsN7QQODgGXv7hVeNMNtWY',
+    apiKey: "AIzaSyDQlb14iN5L8CsN7QQODgGXv7hVeNMNtWY",
     isLoaded: false,
     loading: false,
     items: [],
     error: null,
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     try {
-      fetch(`https://poly.googleapis.com/v1/assets?keywords=${`solar system`}&format=OBJ&key=${`AIzaSyDQlb14iN5L8CsN7QQODgGXv7hVeNMNtWY`}`)
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            isLoaded: true,
-            loading: false,
-            items: result.assets,
-          });
-          console.log(result);
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            loading: false,
-            items: [],
-            error,
-          });
-        }
-      );
-    } catch (err) {
-      alert(err)
-    }
-  }
-  // handleSelect(poly){
-  //   console.log('Selected');
-  //   const selected = [{img: "", assetUrl: ""}]
-  //   const gltf = poly.formats.find(format => format.formatType === 'GLTF2').root.url;
-  //   if(gltf){
-  //     console.log("yeah")
-  //     const img = poly.thumbnail.url
-  //     selected.push({img: img, assetUrl: gltf})
-  //     this.setState({selectedPolyAsset: selected});
-  //     console.log("first", selected)     
-  //     localStorage.setItem("modelUrl", gltf);
-  //     localStorage.setItem("modelThumbnail", img);
-  //     console.log("2nd", localStorage.getItem("modelThumbnail"));     
-  //     console.log("3rd", localStorage.getItem("modelUrl"));      
-  //     window.location.reload();
-
-  //   }
-  // }
-  _selectPolyAsset = (polyAsset) => {
-    const { selectPolyAsset } = this.props;
-    selectPolyAsset(polyAsset);
-  }
-
-  _addApiKey = (apiKey) => {
-    this.setState({apiKey});
-  }
-
-  _performSearch = (value) => {
-    const { apiKey } = this.state;
-
-    if(value.length >= 3) {
-      this.setState({
-        isLoaded: false,
-        items: [],
-        loading: true,
-      });
-      try {
-        fetch(`https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${apiKey}`)
-        .then(res => res.json())
+      fetch(
+        `https://poly.googleapis.com/v1/assets?keywords=${`solar system`}&format=OBJ&key=${`AIzaSyDQlb14iN5L8CsN7QQODgGXv7hVeNMNtWY`}`
+      )
+        .then((res) => res.json())
         .then(
           (result) => {
             this.setState({
@@ -101,18 +42,62 @@ class PolySearch extends Component {
             });
           }
         );
-      } catch (err) {
-        alert(err)
-      }
-
-    } else {
-        this.setState({
-          isLoaded: false,
-          loading: false,
-          items: [],
-        });
+    } catch (err) {
+      alert(err);
     }
   }
+  _selectPolyAsset = (polyAsset) => {
+    const { selectPolyAsset } = this.props;
+    selectPolyAsset(polyAsset);
+  };
+
+  _addApiKey = (apiKey) => {
+    this.setState({ apiKey });
+  };
+
+  _performSearch = (value) => {
+    const { apiKey } = this.state;
+
+    if (value.length >= 3) {
+      this.setState({
+        isLoaded: false,
+        items: [],
+        loading: true,
+      });
+      try {
+        fetch(
+          `https://poly.googleapis.com/v1/assets?keywords=${value}&format=OBJ&key=${apiKey}`
+        )
+          .then((res) => res.json())
+          .then(
+            (result) => {
+              this.setState({
+                isLoaded: true,
+                loading: false,
+                items: result.assets,
+              });
+              console.log(result);
+            },
+            (error) => {
+              this.setState({
+                isLoaded: true,
+                loading: false,
+                items: [],
+                error,
+              });
+            }
+          );
+      } catch (err) {
+        alert(err);
+      }
+    } else {
+      this.setState({
+        isLoaded: false,
+        loading: false,
+        items: [],
+      });
+    }
+  };
 
   render() {
     const { items, isLoaded, loading, apiKey } = this.state;
@@ -123,26 +108,27 @@ class PolySearch extends Component {
           disabled={apiKey === null}
           fullWidth
           label="Search for an asset .."
-                    InputProps={{
-            startAdornment: (
-              <InputAdornment position="start">
-              </InputAdornment>
-            ),
-            }}
+          InputProps={{
+            startAdornment: <InputAdornment position="start"></InputAdornment>,
+          }}
           variant="outlined"
-          onChange={(event) => this._performSearch(event.target.value)}/>
+          onChange={(event) => this._performSearch(event.target.value)}
+        />
         <div className="PolySearch__thumbnailContainer">
           {!loading ? (
             <React.Fragment>
               {isLoaded && items && items.length > 3 ? (
                 <React.Fragment>
-                  {items.filter(item => item.license === 'CREATIVE_COMMONS_BY').map(item => (
-                    <div
-                      onClick={() => this._selectPolyAsset(item)}
-                      key={item.name}>
+                  {items
+                    .filter((item) => item.license === "CREATIVE_COMMONS_BY")
+                    .map((item) => (
+                      <div
+                        onClick={() => this._selectPolyAsset(item)}
+                        key={item.name}
+                      >
                         <PolyResult polyAsset={item} />
-                    </div>
-                  ))}
+                      </div>
+                    ))}
                 </React.Fragment>
               ) : (
                 <div className="PolySearch__noResults">

@@ -31,4 +31,4 @@ AR platform for teachers to create augmented reality experiences. This project w
 ![ezgif-2-0aa9415cf334](https://user-images.githubusercontent.com/47950134/165793632-c5551d56-e47c-42d2-bde1-c64ea29410b3.gif)
 
 ### Viewing AR experience
-
+![ezgif-2-ad502bac141e](https://user-images.githubusercontent.com/47950134/165797586-a722db35-15a4-4105-b3ea-141b9be56061.gif)

@@ -13,7 +13,10 @@ AR platform for teachers to create augmented reality experiences. This project w
 - Lessons Viewing in AR/VR Modes
 - Interactive AR coloring board
 
-## Assets Selection:
+screenshots below
+## 😇
+
+## Collaboration on lesson creation:
 <img alt="lessonsARfun platform" src="https://user-images.githubusercontent.com/47950134/165795221-6f5ea552-af6d-4542-88dc-1d96ca687ccf.gif">
 
 ### 3D model selection & search:

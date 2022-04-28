@@ -1,5 +1,5 @@
 # LessonsARfun-Portal
-AR platform for teachers to create augmented reality experiences. This project was part of my bachelor project
+### AR platform for teachers to create augmented reality experiences.
 
 <img align="right" alt="lessonsARfun platform" src="https://user-images.githubusercontent.com/47950134/165793536-38192652-8b68-4ee9-9bac-d3b59bac3b96.gif">
 

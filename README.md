@@ -13,7 +13,7 @@
 - Lessons Viewing in AR/VR Modes
 - Interactive AR coloring board
 
-screenshots below
+screenshots below 👇
 ## 😇
 
 ### Collaboration on lesson creation:

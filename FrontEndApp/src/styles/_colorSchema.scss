@@ -1,0 +1,118 @@
+$primary-green: #058c42;
+$primary-red: #C81927;
+$primary-blue: #0053b8;
+$primary-yellow: #f39c10;
+$primary-orange: #F66A03;
+$primary-rose: #D7395F;
+$primary-navy-blue: #001829;
+$primary-white-gray: #ECEFF4;
+
+$secondary-green: #016d3d;
+$secondary-red: #9b0713;
+$secondary-blue: #034AA0;
+$secondary-yellow: #cd830d;
+$secondary-orange: #c45200;
+$secondary-rose: #a42542;
+$secondary-navy-blue: #000b13;
+$secondary-gray: #2B2B2B;
+$secondary-white-gray: #f0f0f1b5;
+$secondary-lightblue: #3E6F8E;
+$secondary-lightgreen :#3A8F92;
+
+.lightblue {
+    background-color: $secondary-lightblue;
+}
+
+.lightgreen {
+    background-color: $secondary-lightgreen;}
+.gray {
+    background-color: $secondary-gray;
+}
+
+.crud-color {
+    background-color: $primary-white-gray;
+    color: $secondary-gray;
+}
+
+.green {
+    background-color: $primary-green;
+}
+
+.blue {
+    background-color: $primary-blue;
+}
+
+.red {
+    background-color: $primary-red;
+}
+
+.yellow {
+    background-color: $primary-yellow;
+}
+
+.orange {
+    background-color: $primary-orange;
+}
+
+
+.dark-green {
+    background-color: $secondary-green;
+}
+
+.dark-blue {
+    background-color: $secondary-blue;
+}
+
+.dark-red {
+    background-color: $secondary-red;
+}
+
+.dark-yellow {
+    background-color: $secondary-yellow;
+}
+
+.border-green {
+    // border: 2px inset $primary-green;
+    box-shadow: 0px 0px 15px 0px #1a673b;
+
+}
+
+.border-blue {
+    // border: 2px inset $primary-blue;
+    box-shadow: 0px 0px 15px 0px #002f68;
+
+}
+
+.border-red {
+    // border: 2px inset $primary-red;
+    box-shadow: 0px 0px 15px 0px #570107;
+}
+
+.border-yellow {
+    border: 2px solid $primary-yellow;
+}
+
+.border-black {
+    border: 2px solid rgb(0, 0, 0);
+}
+
+
+$primary_gradient: linear-gradient(90deg, rgba(5, 34, 56, 1) 0%, rgba(5, 34, 56, 0.4962359943977591) 50%, rgba(5, 34, 56, 1) 100%);
+
+
+
+.success {
+    background-color: #218838;
+}
+
+.danger {
+    background-color: #C82333;
+}
+
+.warning {
+    background-color: #E0A800;
+}
+
+.fail {
+    background-color: #5A6268
+} 

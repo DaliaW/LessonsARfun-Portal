@@ -1,0 +1,87 @@
+@import "./colorSchema";
+
+.title {
+    padding-left: 25px;   
+}
+.pro-sidebar.collapsed {
+    position: fixed;
+    top: 0px;
+    color: rgb(255, 255, 255);
+    width: 68px;
+    min-width: 55px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    z-index: 100;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 35px 35px 8px 20px;
+    cursor: pointer;
+}
+
+.pro-sidebar .pro-menu.shaped .pro-menu-item>.pro-inner-item>.pro-icon-wrapper {
+    margin: 0;
+    height: 40px;
+    width: 55px;
+    font-size: 22px;
+}
+
+.pro-sidebar>.pro-sidebar-inner {
+    border-bottom-right-radius: 0px;
+}
+
+
+.pro-sidebar .pro-menu .pro-menu-item>.pro-inner-item {
+    padding: 7px 15px;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content {
+    position: fixed;
+    color: white;
+    background: #2B2B2B;
+    margin-left: 33px;
+    height: 32px;
+    padding-top: 8px;
+    font-size: 15px;
+    padding-right: 5px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+
+.first-new {
+    padding-top: 10 !important;
+}
+
+.last-menuItem {
+    margin-top: -10px !important;
+
+}
+
+//responsiveness
+@media only screen and (max-width: 380px) {
+    .pro-sidebar.collapsed {
+        top: 50px;
+    }
+
+    .pro-sidebar.collapsed {
+        width: 40px;
+    }
+
+    .pro-sidebar .pro-menu.shaped .pro-menu-item>.pro-inner-item>.pro-icon-wrapper {
+        height: 35px;
+        width: 35px;
+        font-size: 18px;
+    }
+
+    .pro-sidebar .pro-menu .pro-menu-item>.pro-inner-item>.pro-item-content {
+        margin-left: 30px;
+        height: 35px;
+       // padding-top: 10px;
+        font-size: 13px;
+    }
+
+}

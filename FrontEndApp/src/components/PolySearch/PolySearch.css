@@ -1,0 +1,30 @@
+.PolySearch__thumbnailContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: stretch;
+    align-items: flex-start;
+    padding-right: 15px;
+    margin-top: 15px;
+    flex: 1 1 auto;
+}
+
+.PolySearch__getKeyLink {
+    align-self: flex-end;
+    padding: 10px 0px 20px 0px;
+}
+
+.PolySearch__container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.PolySearch__noResults {
+    align-self: center;
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 13px;
+}

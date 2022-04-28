@@ -1,0 +1,53 @@
+.PolyResult__thumbnailWrapper {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.PolyResult__name {
+    font-size: 12px;
+    top: 110px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    text-align: center;
+    color: #555;
+    font-weight: bold;
+    padding: 3px;
+}
+
+.PolyResult__by {
+    font-size: 12px;
+    top: 110px;
+    left: 0px;
+    right: 0px;
+    position: absolute;
+    text-align: center;
+    color: #555;
+    font-weight: bold;
+    padding: 16px;
+}
+.PolyResult__license {
+    position: absolute;
+    top: 85px;
+    right: 10px;
+    color: rgb(255, 255, 255);
+}
+
+.PolyResult__thumbnail {
+    width: 150px;
+    transition: all 0.1s linear;
+}
+
+.PolyResult__thumbnail:hover {
+    transition: all 0.3s linear;
+    transform: scale(1.3);
+}
+
+.PolyResult__thumbnailLayer {
+    overflow: hidden;
+    border-radius: 8px;
+    height: 110px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    width: 150px;
+}

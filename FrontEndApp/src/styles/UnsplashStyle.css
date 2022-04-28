@@ -1,0 +1,82 @@
+.UnsplashSearch__container{
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 0px;
+}
+
+.UnsplashSearch__title {
+    font-size: 2.1rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  }
+
+.UnsplashSearch__form {
+    display: grid;
+  }
+
+.UnsplashSearch__label {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+.UnsplashSearch__input {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.0rem;
+    border-radius: 20px;
+    background-color: #ECEFF4;
+    margin-bottom: 1rem;
+  }
+
+.UnsplashSearch__button {
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    padding: 0.6rem 1rem;
+    border: 1px solid rgba(112, 112, 112, 0.75);
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 250ms;
+  }
+.UnsplashSearch__button:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+  }
+
+.UnsplashSearch__card-list {
+    padding-right: 15px;
+    margin-top: 15px;
+    column-count: 3;
+    width: 100%;
+    
+  }
+
+.UnsplashSearch__card {
+    margin-bottom: 1rem;
+    display: flex;
+}
+
+.UnsplashSearch__card--image {
+    flex: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.UnsplashSearch__selected{
+  border : 5px solid rgb(36, 199, 14);
+}
+
+@media (min-width: 768px) {
+    .UnsplashSearch__form {
+      grid-template-columns: auto 1fr auto;
+      grid-gap: 1rem;
+      align-items: center;
+    }
+    .UnsplashSearch__input {
+      margin-bottom: 0;
+    }
+  }
+  
+@media only screen and (max-width: 600px) {
+      .UnsplashSearch__card-list {
+          column-count: 1;
+      }
+  }

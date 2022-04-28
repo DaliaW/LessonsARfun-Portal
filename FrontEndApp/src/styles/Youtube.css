@@ -1,0 +1,54 @@
+.youtube__container{
+    margin: 0 auto;
+    max-width: 600px;
+    padding: 30px;
+}
+
+.youtube__title {
+    font-size: 2.1rem;
+    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.youtube__form {
+    display: grid;
+}
+
+.youtube__label {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    color: #f53a66;
+}
+  
+.youtube__input {
+    font-size: 1.2rem;
+    padding: 0.5rem 1rem;
+    line-height: 1.0rem;
+    border-radius: 20px;
+    background-color: #ECEFF4;
+    margin-bottom: 1rem;
+}
+
+.youtube__button {
+    background-color: #f53a66;
+    color: white;
+    padding: 0.6rem 1rem;
+    border: 1px solid #da617d;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 250ms;
+}
+.youtube__button:hover {
+    background-color: #ca5570;
+}
+
+@media (min-width: 768px) {
+    .youtube__form {
+      grid-template-columns: auto 1fr auto;
+      grid-gap: 1rem;
+      align-items: center;
+    }
+    .youtube__input {
+      margin-bottom: 0;
+    }
+}

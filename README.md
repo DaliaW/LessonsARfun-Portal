@@ -1,7 +1,9 @@
 # LessonsARfun-Portal
-### AR platform for teachers to create augmented reality experiences.
+### AR platform for teachers to create augmented reality experiences. 🤩✨
 
-<img align="right" alt="lessonsARfun platform" src="https://user-images.githubusercontent.com/47950134/165793536-38192652-8b68-4ee9-9bac-d3b59bac3b96.gif">
+## System Architecture
+![Desktop - 1](https://user-images.githubusercontent.com/47950134/173247447-01e4c169-9c26-47b0-971d-a229341a3a31.png)
+
 
 ## System Features
 - Authoring a lesson
@@ -14,7 +16,9 @@
 - Interactive AR coloring board
 
 screenshots below 👇
-## 😇
+## A sneak peak😇
+<img align="center" alt="lessonsARfun platform" src="https://user-images.githubusercontent.com/47950134/165793536-38192652-8b68-4ee9-9bac-d3b59bac3b96.gif">
+
 
 ### Collaboration on lesson creation:
 <img alt="lessonsARfun platform" src="https://user-images.githubusercontent.com/47950134/165795221-6f5ea552-af6d-4542-88dc-1d96ca687ccf.gif">
@@ -35,3 +39,14 @@ screenshots below 👇
 
 ### Viewing AR experience
 ![ezgif-2-ad502bac141e](https://user-images.githubusercontent.com/47950134/165797586-a722db35-15a4-4105-b3ea-141b9be56061.gif)
+
+## Technologies & Tools
+### Backend
+- Strapi
+- PostgreSQL
+### Frontend
+- React
+- ThreeJS
+### AR libraries
+- MindAR
+- AFrame
